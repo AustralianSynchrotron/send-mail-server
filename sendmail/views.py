@@ -50,4 +50,4 @@ def post_the_mail():
             con.send(msg)
 
     logger.info("Email Sent, you don't have anymore messages!")
-    return "Done!"
+    return "Done! "
