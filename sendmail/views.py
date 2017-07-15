@@ -30,6 +30,9 @@ def post_the_mail():
     subject_string = str(request.form.get('subject'))
     body_string = str(request.form.get('body'))
     tmp_list = str(request.form.get('recipients')).split(',')
+    from_string = str(request.form.get('from'))
+    if not from_string:
+        from_string = 'email_robot'
 
     recipient_list = []
     for recipient in tmp_list:
@@ -45,6 +48,7 @@ def post_the_mail():
         for user in recipient_list:
             logger.info(user)
             msg = Message(subject=subject_string,
+                          sender=from_string + '@synchrotron.org.au',
                           html=body_string,
                           recipients=[user])
             con.send(msg)
