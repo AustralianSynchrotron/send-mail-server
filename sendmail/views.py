@@ -31,6 +31,7 @@ def post_the_mail():
     body_string = str(request.form.get('body'))
     tmp_list = str(request.form.get('recipients')).split(',')
     from_string = str(request.form.get('from'))
+    logger.info(from_string)
     if not from_string:
         from_string = 'email_robot'
 
@@ -41,7 +42,7 @@ def post_the_mail():
             r = r + '@synchrotron.org.au'
         recipient_list.append(r)
 
-    logger.info("%s, %s, %s" % (subject_string, body_string, tmp_list))
+    logger.info("%s, %s, %s, %s" % (from_string, subject_string, body_string, tmp_list))
 
     with mail.connect() as con:
         logger.info('Sending Email Message to the following users: ')
